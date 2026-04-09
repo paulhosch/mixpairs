@@ -30,14 +30,8 @@ def _triangle(i: int, j: int) -> Triangle:
     return Triangle.DIAG
 
 
-def _renderer_key(config: PairGridConfig, triangle: Triangle, pair_type: PairType) -> tuple[Any, str]:
-    section = (
-        config.upper
-        if triangle == Triangle.UPPER
-        else config.lower
-        if triangle == Triangle.LOWER
-        else config.diag
-    )
+def _renderer_key(config: PairGridConfig, triangle: Triangle, pair_type: PairType):
+    section = config.upper if triangle == Triangle.UPPER else config.lower if triangle == Triangle.LOWER else config.diag
     if pair_type == PairType.CONTINUOUS:
         return section.continuous, "bivar"
     if pair_type == PairType.COMBO:
@@ -61,25 +55,25 @@ def build_execution_plan(
     plan: list[CellPlan] = []
     for i, row_name in enumerate(columns):
         for j, col_name in enumerate(columns):
-            triangle = _triangle(i, j)
-            corner_blank = config.corner and triangle == Triangle.UPPER
+            tri = _triangle(i, j)
+            blank_by_corner = config.corner and tri == Triangle.UPPER
             pair_type = matrix[i][j]
-            key, kind = _renderer_key(config, triangle, pair_type)
-            renderer = registry_resolver("blank" if corner_blank else key, kind)
+            key, kind = _renderer_key(config, tri, pair_type)
+            renderer = registry_resolver("blank" if blank_by_corner else key, kind)
             orient = None
             if pair_type == PairType.COMBO:
-                orient = determine_orient(dtypes[row_name], dtypes[col_name], triangle)
+                orient = determine_orient(dtypes[row_name], dtypes[col_name], tri)
             plan.append(
                 CellPlan(
                     row=i,
                     col=j,
-                    triangle=triangle,
+                    triangle=tri,
                     pair_type=pair_type,
                     renderer=renderer,
                     x_col=col_name,
-                    y_col=None if triangle == Triangle.DIAG else row_name,
+                    y_col=None if tri == Triangle.DIAG else row_name,
                     orient=orient,
-                    is_blank=corner_blank or key in {None, "blank"},
+                    is_blank=blank_by_corner or key in {None, "blank"},
                 )
             )
     return plan
@@ -90,13 +84,15 @@ def validate_plan(plan: list[CellPlan], data: pd.DataFrame) -> list[str]:
     for cell in plan:
         if cell.is_blank:
             continue
-        if getattr(cell.renderer, "__name__", "") == "hexbin":
+        if getattr(cell.renderer, "__name__", "") == "hexbin" and data.shape[0] > 0:
             warnings.append(
-                f"Cell ({cell.row}, {cell.col}) uses hexbin. If hue is set it will fallback to scatter."
+                f"Cell ({cell.row}, {cell.col}) uses hexbin. If hue is enabled, it will fallback to scatter."
             )
         if cell.pair_type == PairType.COMBO and cell.x_col in data.columns and cell.y_col in data.columns:
             x_levels = data[cell.x_col].nunique(dropna=True)
             y_levels = data[cell.y_col].nunique(dropna=True) if cell.y_col else 0
             if max(x_levels, y_levels) >= 50:
                 warnings.append(
-                    f"Cell ({cell.row}, {cell.col}) has very high categorical cardinality and may
+                    f"Cell ({cell.row}, {cell.col}) has high cardinality categorical levels; result may be unreadable."
+                )
+    return warnings

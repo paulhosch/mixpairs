@@ -24,19 +24,18 @@ def test_create_figure_dimensions():
     cfg = get_preset("default")
     fig, _ = create_figure(3, cfg)
     w, h = fig.get_size_inches()
-    assert w > 0
-    assert h > 0
+    assert w > 0 and h > 0
 
 
-def test_create_axes_count_for_full_and_corner():
+def test_create_axes_count():
     _, axes_full, _, _ = _setup(corner=False)
     _, axes_corner, _, _ = _setup(corner=True)
     assert len(axes_full) == 9
     assert len(axes_corner) == 6
 
 
-def test_configure_labels_edges():
+def test_configure_labels_edge_visibility():
     _, axes, columns, cfg = _setup(corner=False)
-    font_sizes = compute_font_sizes(len(columns), 1.0)
-    configure_labels(axes, columns, cfg, font_sizes)
-    assert axes[(2, 2)].get_xlabel() != "
+    configure_labels(axes, columns, cfg, compute_font_sizes(len(columns), 1.0))
+    assert axes[(2, 2)].get_xlabel() != ""
+    assert axes[(0, 0)].get_ylabel() != ""
