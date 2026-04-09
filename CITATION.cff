@@ -1,0 +1,13 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it."
+title: "mixpairs"
+version: "0.1.0"
+type: software
+authors:
+  - family-names: "Hosch"
+    given-names: "Paul Christian"
+    email: "paul.hosch@rwth-aachen.de"
+    orcid: "https://orcid.org/0009-0003-4602-1907"
+repository-code: "https://github.com/paulhosch/mixpairs"
+url: "https://github.com/paulhosch/mixpairs"
+license: "MIT"

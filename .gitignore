@@ -5,3 +5,10 @@ __pycache__/
 *.pyo
 *.pyd
 *.egg-info/
+.env
+.env.*
+!.env.example
+build/
+dist/
+*.whl
+*.tar.gz

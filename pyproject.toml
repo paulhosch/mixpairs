@@ -8,13 +8,12 @@ version = "0.1.0"
 description = "Mixed-type generalized pair plots for Python."
 readme = "README.md"
 requires-python = ">=3.10"
-license = { text = "MIT" }
-authors = [{ name = "mixpairs contributors" }]
+license = "MIT"
+authors = [{ name = "Paul Christian Hosch", email = "paul.hosch@rwth-aachen.de" }]
 keywords = ["pairplot", "visualization", "seaborn", "matplotlib", "geospatial", "data-science"]
 classifiers = [
   "Development Status :: 3 - Alpha",
   "Intended Audience :: Science/Research",
-  "License :: OSI Approved :: MIT License",
   "Programming Language :: Python :: 3",
   "Programming Language :: Python :: 3 :: Only",
   "Programming Language :: Python :: 3.10",
@@ -31,9 +30,9 @@ dependencies = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/your-org/mixpairs"
-Repository = "https://github.com/your-org/mixpairs"
-Issues = "https://github.com/your-org/mixpairs/issues"
+Homepage = "https://github.com/paulhosch/mixpairs"
+Repository = "https://github.com/paulhosch/mixpairs"
+Issues = "https://github.com/paulhosch/mixpairs/issues"
 
 [project.optional-dependencies]
 dev = ["pytest", "pygments<2.20"]
