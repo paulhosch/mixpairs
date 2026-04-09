@@ -4,26 +4,30 @@ Mixed-type generalized pair plots for Python.
 Fast exploratory pair plots for mixed tabular data.
 
 [![CI](https://github.com/paulhosch/mixpairs/actions/workflows/ci.yml/badge.svg)](https://github.com/paulhosch/mixpairs/actions/workflows/ci.yml)
+[![PyPI version](https://img.shields.io/pypi/v/mixpairs)](https://pypi.org/project/mixpairs/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Python](https://img.shields.io/badge/python-3.10%20%7C%203.11%20%7C%203.12-blue)](https://github.com/paulhosch/mixpairs)
 
-Status: active development. PyPI release is pending final publication checks.
+Status: active development. The package is published on PyPI.
 
 ## Why mixpairs
 
 `mixpairs` is designed for exploratory analysis where numeric and categorical features appear in the same table. Standard pair plots often focus on continuous variables, while many real workflows in data science and geospatial feature engineering require mixed-type comparisons.
 
 Motivation:
+
 - Provide one consistent pair-plot interface for continuous, categorical, and mixed variable pairs.
 - Keep defaults interpretable for rapid feature screening and diagnostics.
 - Support publication-ready figure generation with minimal plotting boilerplate.
 
 Methodology:
+
 - Build a grid where each cell selects a renderer based on variable type pairing.
 - Use dedicated diagonal summaries and configurable upper/lower triangle renderers.
 - Expose a simple API (`ggpairs`) with presets and custom renderer hooks for domain-specific adaptation.
 
 Typical use cases:
+
 - Early-stage feature diagnostics before classification/regression modeling.
 - Identifying class overlap/separation patterns with `hue`.
 - Comparing relationships across many features with optional subsampling for scalability.
@@ -63,6 +67,7 @@ The `examples/` folder contains reproducible scripts and output figures. Each pl
 ![Basic iris pair plot](https://raw.githubusercontent.com/paulhosch/mixpairs/main/examples/01_basic_iris.png)
 
 What this plot shows:
+
 - Pairwise relationships among classic iris measurements (`sepal_length`, `sepal_width`, `petal_length`, `petal_width`).
 - Diagonal panels show each variable's marginal distribution.
 - Off-diagonal panels reveal correlation structure; petal variables are strongly associated, while sepal relationships are weaker.
@@ -73,6 +78,7 @@ What this plot shows:
 ![Mixed types pair plot](https://raw.githubusercontent.com/paulhosch/mixpairs/main/examples/02_mixed_types.png)
 
 What this plot shows:
+
 - A mixed feature set: continuous (`total_bill`, `tip`, `size`) and categorical (`sex`, `day`) with `hue="time"`.
 - Numeric-numeric panels help compare lunch/dinner tipping behavior through overlap and spread.
 - Numeric-categorical panels summarize how bill and tip distributions shift across categories.
@@ -83,6 +89,7 @@ What this plot shows:
 ![Custom renderers pair plot](https://raw.githubusercontent.com/paulhosch/mixpairs/main/examples/03_custom_renderers.png)
 
 What this plot shows:
+
 - The lower triangle uses a custom hexbin renderer, replacing default scatter panels.
 - Hexbin density makes structure clearer in dense regions where many points overlap.
 - This is useful for larger datasets where point clouds become saturated.
@@ -93,6 +100,7 @@ What this plot shows:
 ![Corner mode pair plot](https://raw.githubusercontent.com/paulhosch/mixpairs/main/examples/04_corner_mode.png)
 
 What this plot shows:
+
 - `corner=True` displays only the lower triangle and diagonal, reducing visual duplication.
 - `hue="species"` highlights class separation patterns directly in pairwise feature space.
 - This is a compact option for publication-style layouts or reports where space matters.
@@ -103,6 +111,7 @@ What this plot shows:
 ![Large grid pair plot](https://raw.githubusercontent.com/paulhosch/mixpairs/main/examples/05_large_grid.png)
 
 What this plot shows:
+
 - Eight continuous variables plus two categorical variables create a high-dimensional mixed grid.
 - `subsample=400` keeps render time and visual density manageable while preserving global patterns.
 - `hue="cat_b"` allows quick comparison between two groups across many variable pairs.
@@ -113,6 +122,7 @@ What this plot shows:
 Geospatial feature plotting examples will be maintained in a separate repository to keep this package focused.
 
 Planned external integration:
+
 - Repository: `geospatial feature plotting companion repository (link will be added in a later release)`
 - Documentation section: `external geospatial workflow guide (coming soon)`
 - Planned scope: end-to-end geospatial feature engineering and visualization examples built around `mixpairs`.
@@ -182,6 +192,7 @@ Use custom renderers by passing callables in `upper`, `lower`, or `diag`.
 `mixpairs` is inspired by the `ggpairs` concept from R's `GGally` package and adapts that idea to a Python-first mixed-type workflow.
 
 Reference:
+
 - Schloerke B, Crowley J, Cook D, et al. GGally: Extension to `ggplot2`. R package version 2.4.0. [https://ggobi.github.io/ggally/](https://ggobi.github.io/ggally/)
 
 For citing this package, use the metadata in [`CITATION.cff`](CITATION.cff).
