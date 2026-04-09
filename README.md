@@ -60,7 +60,7 @@ The `examples/` folder contains reproducible scripts and output figures. Each pl
 
 ### 1) Iris baseline (`examples/01_basic_iris.py`)
 
-![Basic iris pair plot](examples/01_basic_iris.png)
+![Basic iris pair plot](https://raw.githubusercontent.com/paulhosch/mixpairs/main/examples/01_basic_iris.png)
 
 What this plot shows:
 - Pairwise relationships among classic iris measurements (`sepal_length`, `sepal_width`, `petal_length`, `petal_width`).
@@ -70,7 +70,7 @@ What this plot shows:
 
 ### 2) Mixed numeric/categorical tips data (`examples/02_mixed_types.py`)
 
-![Mixed types pair plot](examples/02_mixed_types.png)
+![Mixed types pair plot](https://raw.githubusercontent.com/paulhosch/mixpairs/main/examples/02_mixed_types.png)
 
 What this plot shows:
 - A mixed feature set: continuous (`total_bill`, `tip`, `size`) and categorical (`sex`, `day`) with `hue="time"`.
@@ -80,7 +80,7 @@ What this plot shows:
 
 ### 3) Custom renderer example (`examples/03_custom_renderers.py`)
 
-![Custom renderers pair plot](examples/03_custom_renderers.png)
+![Custom renderers pair plot](https://raw.githubusercontent.com/paulhosch/mixpairs/main/examples/03_custom_renderers.png)
 
 What this plot shows:
 - The lower triangle uses a custom hexbin renderer, replacing default scatter panels.
@@ -90,7 +90,7 @@ What this plot shows:
 
 ### 4) Corner mode with class coloring (`examples/04_corner_mode.py`)
 
-![Corner mode pair plot](examples/04_corner_mode.png)
+![Corner mode pair plot](https://raw.githubusercontent.com/paulhosch/mixpairs/main/examples/04_corner_mode.png)
 
 What this plot shows:
 - `corner=True` displays only the lower triangle and diagonal, reducing visual duplication.
@@ -100,7 +100,7 @@ What this plot shows:
 
 ### 5) Large mixed grid stress test (`examples/05_large_grid.py`)
 
-![Large grid pair plot](examples/05_large_grid.png)
+![Large grid pair plot](https://raw.githubusercontent.com/paulhosch/mixpairs/main/examples/05_large_grid.png)
 
 What this plot shows:
 - Eight continuous variables plus two categorical variables create a high-dimensional mixed grid.
